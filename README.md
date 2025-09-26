@@ -80,6 +80,7 @@ ________________________________________
 • bcrypt → protect passwords
 • jsonwebtoken → secure authentication
 ---
-end
+end of chatgpt response
+---
 
 I think chatgpt's response covers what each does quite well but AI can be wrong. Hallucinations and other factors such as GIGO (garbage in, garbage out) can affect its response.

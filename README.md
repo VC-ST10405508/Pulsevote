@@ -82,5 +82,5 @@ ________________________________________
 ________________________________________
 end
 ---
-
-I think chatgpt's response covers what each does quite well but AI can be wrong. Hallucinations and other factors such as GIGO (garbage in, garbage out) can affect its response.
+## My feedback on it's response (Freestyled with my understanding of AI and I.T - Is not accredited and should be fact checked)
+I think chatgpt's response covers what each does quite well but AI can be wrong. Hallucinations and other factors such as GIGO (garbage in, garbage out) can affect its response. Beyond that, it's also a bit of a bias echo chamber, often amplifying the slants and prejudices present in its training data and presenting them as neutral fact. And don't be fooled by its fluency it's a machine that is built with algorithms, sequences and patterns, not a mind. It creates a powerful illusion of understanding without any real comprehension, which is why its knowledge is frozen in time and it can't achieve true insight. It doesnt have the EQ of a human and struggles to understand right and wrong. It only knows how to follow the rules it has been given and it cannot change these rules in real-time. Cause most of the AI generators that are public have been taught on RLHF - reinforcement learning with human feedback- which basically prevents it from breaking any of it's guidelines. Another thing to note is that when AI is wrong it will present it as a fact - AI is not often wrong but it is always important to double check its response

@@ -27,6 +27,7 @@ explain what each offers the node.js project
 chatgpt's response:
 
 start
+---
 📦 1. express
 • A web framework for Node.js.
 • Handles routing (GET, POST, etc.), middleware, and request/response logic.
@@ -78,6 +79,8 @@ ________________________________________
 • cors → allow cross-domain requests
 • bcrypt → protect passwords
 • jsonwebtoken → secure authentication
+________________________________________
 end
+---
 
 I think chatgpt's response covers what each does quite well but AI can be wrong. Hallucinations and other factors such as GIGO (garbage in, garbage out) can affect its response.

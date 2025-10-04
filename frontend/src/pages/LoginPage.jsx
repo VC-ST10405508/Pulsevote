@@ -1,7 +1,7 @@
 import { useState } from "react";
 import api from "../api";
 import { useAuth } from "../AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function LoginPage() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -24,33 +24,56 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex justify-center">
-      <form
-        onSubmit={handleSubmit}
-        className="w-full max-w-md bg-white p-8 shadow rounded space-y-4"
-      >
-        <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          required
-        />
-        <button className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
-          Login
-        </button>
-        {message && <p className="text-red-500 text-center">{message}</p>}
-      </form>
+    <div className="page-container">
+      <div className="auth-card">
+        <div className="auth-header">
+          <h2>PulseVote</h2>
+          <p>Welcome Back</p>
+        </div>
+        
+        <div className="auth-body">
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label>Email</label>
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                onChange={handleChange}
+                required
+              />
+            </div>
+            
+            <div className="form-group">
+              <label>Password</label>
+              <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                onChange={handleChange}
+                required
+              />
+            </div>
+            
+            <button type="submit" className="auth-btn">
+              Login
+            </button>
+          </form>
+
+          {message && (
+            <div className="alert-message">
+              {message}
+            </div>
+          )}
+
+          <div className="auth-link">
+            <p>
+              Don't have an account?{" "}
+              <Link to="/register">Register</Link>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

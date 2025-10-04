@@ -14,11 +14,9 @@ function App() {
     <AuthProvider>
       <Router>
         <Routes>
-          {/* HomePage has its own full design - no Layout */}
-          <Route path="/" element={<HomePage />} />
-          
           {/* All other pages use the Layout */}
           <Route element={<Layout />}>
+          <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/logout" element={<LogoutPage />} />

@@ -1,17 +1,16 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import api from "../api";
-import { AuthContext } from "../AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "../AuthContext";
+import { useNavigate, Link } from "react-router-dom";
 
-export default function Register() {
+export default function RegisterPage() {
   const [form, setForm] = useState({
-    fullname: "",
     email: "",
     password: "",
     confirmPassword: ""
   });
   const [message, setMessage] = useState("");
-  const { login } = useContext(AuthContext);
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = (e) =>
@@ -25,7 +24,7 @@ export default function Register() {
     }
     try {
       const res = await api.post("/auth/register", form);
-      login(res.data.token); // auto-login after register
+      login(res.data.token);
       navigate("/dashboard");
     } catch (err) {
       setMessage(err.response?.data?.message || "Registration failed.");
@@ -33,50 +32,67 @@ export default function Register() {
   };
 
   return (
-    <div className="flex justify-center">
-      <form
-        onSubmit={handleSubmit}
-        className="w-full max-w-md bg-white p-8 shadow rounded space-y-4"
-      >
-        <h2 className="text-2xl font-bold mb-4 text-center">Register</h2>
-        <input
-          type="text"
-          name="fullname"
-          placeholder="Full Name"
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          required
-        />
-        <input
-          type="password"
-          name="confirmPassword"
-          placeholder="Confirm Password"
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          required
-        />
-        <button className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">
-          Register
-        </button>
-        {message && <p className="text-red-500 text-center">{message}</p>}
-      </form>
+    <div className="page-container">
+      <div className="auth-card">
+        <div className="auth-header">
+          <h2>PulseVote</h2>
+          <p>Create Your Account</p>
+        </div>
+        
+        <div className="auth-body">
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label>Email</label>
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                onChange={handleChange}
+                required
+              />
+            </div>
+            
+            <div className="form-group">
+              <label>Password</label>
+              <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                onChange={handleChange}
+                required
+              />
+            </div>
+            
+            <div className="form-group">
+              <label>Confirm Password</label>
+              <input
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm your password"
+                onChange={handleChange}
+                required
+              />
+            </div>
+            
+            <button type="submit" className="auth-btn">
+              Register
+            </button>
+          </form>
+
+          {message && (
+            <div className="alert-message">
+              {message}
+            </div>
+          )}
+
+          <div className="auth-link">
+            <p>
+              Already have an account?{" "}
+              <Link to="/login">Login</Link>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
-

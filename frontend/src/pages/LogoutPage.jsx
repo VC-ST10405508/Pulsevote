@@ -1,14 +1,14 @@
-import { useEffect, useContext } from "react";
+import { useEffect } from "react";
+import { useAuth } from "../AuthContext";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../AuthContext";
 
 export default function LogoutPage() {
-  const { logout } = useContext(AuthContext);
+  const { logout } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    logout(); // clear token
-    navigate("/"); // redirect to home
+    logout();
+    navigate("/");
   }, [logout, navigate]);
 
   return (

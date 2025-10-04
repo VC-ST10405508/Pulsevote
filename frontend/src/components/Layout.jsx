@@ -1,38 +1,46 @@
 import { Link, Outlet } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../AuthContext";
+import { useAuth } from "../AuthContext";
+import "./Layout.css";
 
 export default function Layout() {
-  const { token, logout } = useContext(AuthContext);
+  const { token, logout } = useAuth();
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
-      <header className="bg-blue-600 text-white shadow">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold tracking-wide">PulseVote</h1>
-          <nav className="flex space-x-6 text-lg">
-            <Link to="/" className="hover:text-gray-200 transition">Home</Link>
+    <div className="layout-container">
+      {/* Navbar */}
+      <nav className="layout-navbar">
+        <div className="navbar-content">
+          <Link to="/" className="navbar-brand">
+            <span className="brand-text">PulseVote</span>
+          </Link>
+          
+          <div className="navbar-links">
+            <Link to="/" className="nav-link">Home</Link>
             {token ? (
               <>
-                <Link to="/dashboard" className="hover:text-gray-200 transition">Dashboard</Link>
-                <button onClick={logout} className="hover:text-gray-200 transition">Logout</button>
+                <Link to="/dashboard" className="nav-link">Dashboard</Link>
+                <button onClick={logout} className="nav-link logout-btn">Logout</button>
               </>
             ) : (
               <>
-                <Link to="/login" className="hover:text-gray-200 transition">Login</Link>
-                <Link to="/register" className="hover:text-gray-200 transition">Register</Link>
+                <Link to="/login" className="nav-link">Login</Link>
+                <Link to="/register" className="nav-link register-link">Register</Link>
               </>
             )}
-          </nav>
+          </div>
         </div>
-      </header>
+      </nav>
 
-      <main className="flex-grow max-w-4xl mx-auto px-6 py-12">
+      {/* Main Content */}
+      <main className="layout-main">
         <Outlet />
       </main>
 
-      <footer className="bg-blue-600 text-white py-4 text-center">
-        <p>&copy; {new Date().getFullYear()} PulseVote. All rights reserved.</p>
+      {/* Footer */}
+      <footer className="layout-footer">
+        <div className="footer-content">
+          <p>&copy; {new Date().getFullYear()} PulseVote. All rights reserved.</p>
+        </div>
       </footer>
     </div>
   );

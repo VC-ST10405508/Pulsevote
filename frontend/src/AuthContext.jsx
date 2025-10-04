@@ -1,23 +1,20 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useContext } from 'react';
 
-export const AuthContext = createContext();
+// Create the context
+const AuthContext = createContext();
 
+// AuthProvider component
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem('token'));
 
-  useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) setToken(storedToken);
-  }, []);
-
-  const login = (jwt) => {
-    setToken(jwt);
-    localStorage.setItem("token", jwt);
+  const login = (newToken) => {
+    setToken(newToken);
+    localStorage.setItem('token', newToken);
   };
 
   const logout = () => {
     setToken(null);
-    localStorage.removeItem("token");
+    localStorage.removeItem('token');
   };
 
   return (
@@ -25,4 +22,13 @@ export const AuthProvider = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
+};
+
+// Custom hook - with better error handling
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
 };
